@@ -7,7 +7,7 @@ class TestMethods(unittest.TestCase):
 		# Arrange
 
 		# Act
-		result = read_csv_file("..\\results.csv")
+		result = read_csv_file("..\\data\\nc_state_fair_vendor_data.csv")
 
 		# Assert
 		self.assertGreater(len(result), 990)
@@ -40,13 +40,14 @@ class TestMethods(unittest.TestCase):
 
 	def test_get_sorted_unique_column_values__valid_column_name__returns_values(self):
 		# Arrange
+		template = read_template("..\\template\\template.html")
+		data = read_csv_file("results_sample.csv")
 
 		# Act
-		result = get_sorted_unique_column_values()
+		result = get_sorted_unique_column_values(data, "FOODTYPE")
 
 		# Assert
-		self.assertTrue("<html>" in result)
-
+		self.assertEqual(result, ['Confections', 'Fair Food', 'Ice Cream'] )
 
 if __name__ == '__main__':
 	unittest.main()		

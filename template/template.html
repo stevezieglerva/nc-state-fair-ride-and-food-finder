@@ -3,8 +3,32 @@
 		<title>NC State Fair Finder</title>
 	</head>
 	<body>
-		Here are the rides and fares.
+		<script src="list.js"></script>
+		<h1>Here are the rides and fares.</h1>
 
-		<list-here/>
+
+		<div id="vendors">
+			<!-- class="search" automagically makes an input a search field. -->
+			<input class="search" placeholder="Search" />
+			<!-- class="sort" automagically makes an element a sort buttons. The date-sort value decides what to sort by. -->
+			<button class="sort" data-sort="vendor">
+				Sort vendor
+			</button>
+			<button class="sort" data-sort="foodtype">
+					Sort foodtype
+			</button>
+
+			<ul class="list">
+				<list-here/>
+			</ul>
+		</div>
+		<script>
+			var options = {
+				valueNames: [ 'vendor', 'foodtype', 'product' ]
+			};
+			
+			var hackerList = new List('vendors', options);
+		</script>
+		</body>
 	</body>
 </html>
