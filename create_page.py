@@ -36,9 +36,21 @@ def read_template(filename):
 
 
 def create_page(template, data):
+	filter_button_list_html = create_filter_button_list(data)
 	list_html = create_vendor_list_html(data)
-	new_page = template.replace("<list-here/>", list_html)
+	new_page = template.replace("<filter-buttons-here/>", filter_button_list_html)
+	new_page = new_page.replace("<list-here/>", list_html)
 	return new_page
+
+
+def create_filter_button_list(data):
+	foodtypes = get_sorted_unique_column_values(data, "FOODTYPE")
+	button_template = "<button class='filter-button'>-foodtype-</button>\n"
+	button_list = ""
+	for foodtype in foodtypes:
+		new_button = button_template.replace("-foodtype-", foodtype)
+		button_list = button_list + new_button
+	return button_list
 
 
 def create_vendor_list_html(data):
