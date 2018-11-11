@@ -45,7 +45,7 @@ def create_page(template, data):
 
 def create_filter_button_list(data):
 	foodtypes = get_sorted_unique_column_values(data, "FOODTYPE")
-	button_template = "<button class='filter-button'>-foodtype-</button>\n"
+	button_template = "<a href='#' class='filter-button'>-foodtype-</a>\n"
 	button_list = ""
 	for foodtype in foodtypes:
 		new_button = button_template.replace("-foodtype-", foodtype)
