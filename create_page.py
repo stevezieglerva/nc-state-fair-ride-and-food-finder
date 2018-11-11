@@ -10,8 +10,8 @@ def read_csv_file(filename):
 		for row in csv_reader:
 			count = count + 1
 			if "FOODTYPE" in row:
-				print(row["FOODTYPE"])
-				if row["FOODTYPE"] != "":
+				if row["FOODTYPE"] is not None:
+					print("\tRead: " + row["CONTRACT"])
 					results.append(row)
 	return results
 

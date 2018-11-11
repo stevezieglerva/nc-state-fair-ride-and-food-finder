@@ -10,7 +10,8 @@ class TestMethods(unittest.TestCase):
 		result = read_csv_file("..\\data\\nc_state_fair_vendor_data.csv")
 
 		# Assert
-		self.assertGreater(len(result), 990)
+		self.assertGreater(len(result), 1)
+		self.assertLess(len(result), 100)
 
 	def test_read_template__valid_filename__string_has_html(self):
 		# Arrange
