@@ -4,19 +4,20 @@
 	</head>
 	<body>
 		<script src="list.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 		<h1>Here are the rides and fares.</h1>
 
 
 		<div id="vendors">
 			<!-- class="search" automagically makes an input a search field. -->
-			<input class="search" placeholder="Search" />
+			<input class="search" placeholder="Search" /><br/>
 			<!-- class="sort" automagically makes an element a sort buttons. The date-sort value decides what to sort by. -->
-			<button class="sort" data-sort="vendor">
-				Sort vendor
-			</button>
-			<button class="sort" data-sort="foodtype">
-					Sort foodtype
-			</button>
+
+			<button class="filter-button">Confection</button>
+			<button class="filter-button">Ice Cream</button>
+			<button class="filter-button">Fair Food</button>
+			<button class="filter-button-all">All</button>
 
 			<ul class="list">
 				<list-here/>
@@ -27,7 +28,24 @@
 				valueNames: [ 'vendor', 'foodtype', 'product' ]
 			};
 			
-			var hackerList = new List('vendors', options);
+			var vendorList = new List('vendors', options);
+
+			$('.filter-button').on('click',function(){
+				var $text = $(this).text();
+				if($(this).hasClass( 'selected' )){
+					vendorList.filter();
+					$(this).removeClass('selected');
+				} else {
+					vendorList.filter(function(item) {
+					return (item.values().foodtype == $text);
+					});
+					$(this).addClass('selected');
+				}
+				});
+
+			$('.filter-button-all').on('click',function(){
+					vendorList.filter();
+				});				
 		</script>
 		</body>
 	</body>

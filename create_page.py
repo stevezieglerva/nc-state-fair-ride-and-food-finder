@@ -9,7 +9,10 @@ def read_csv_file(filename):
 		count = 0
 		for row in csv_reader:
 			count = count + 1
-			results.append(row)
+			if "FOODTYPE" in row:
+				print(row["FOODTYPE"])
+				if row["FOODTYPE"] != "":
+					results.append(row)
 	return results
 
 
