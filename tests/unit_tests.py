@@ -56,6 +56,21 @@ class TestMethods(unittest.TestCase):
 		# Assert
 		self.assertEqual(result, ['Confections', 'Fair Food', 'Ice Cream'] )
 
+
+	def test_get_sorted_unique_column_values_and_counts__valid_column_name__returns_values(self):
+		# Arrange
+		template_filename = os.path.join("..", "template", "template.html")
+		template = read_template(template_filename)
+		data_filename = os.path.join("results_sample.csv")
+		data = read_csv_file(data_filename)
+
+		# Act
+		result = get_sorted_unique_column_values_and_counts(data, "FOODTYPE")
+
+		# Assert
+		self.assertEqual(result['Confections'], 1 )
+
+
 	def test_create_id_from_text__nothing_to_replace__text_returned(self):
 		# Arrange
 

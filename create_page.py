@@ -14,7 +14,6 @@ def read_csv_file(filename):
 			count = count + 1
 			if "FOODTYPE" in row:
 				if row["FOODTYPE"] != "":
-					print("\tRead: " + row["CONTRACT"])
 					results.append(row)
 	return results
 
@@ -27,7 +26,21 @@ def get_sorted_unique_column_values(data, column_name):
 			unique_list[col_val] = 1
 		else:
 			unique_list[col_val] = unique_list[col_val] + 1		
-	sorted_unique_list = sorted(unique_list.keys())		
+	sorted_unique_list = sorted(unique_list.keys())	
+	return sorted_unique_list
+
+def get_sorted_unique_column_values_and_counts(data, column_name):
+	unique_list = {}
+	for row in data:
+		col_val = row[column_name]
+		if col_val not in unique_list:
+			unique_list[col_val] = 1
+		else:
+			unique_list[col_val] = unique_list[col_val] + 1		
+	sorted_unique_keys = sorted(unique_list.keys())	
+	sorted_unique_list = {}
+	for key in sorted_unique_keys:
+		sorted_unique_list[key] = unique_list[key]
 	return sorted_unique_list
 
 
@@ -44,7 +57,6 @@ def create_page(template, data):
 	new_page = template.replace("<filter-buttons-here/>", filter_button_list_html)
 	new_page = new_page.replace("<list-here/>", list_html)
 	new_page = new_page.replace("<date-generated/>", datetime.datetime.now().isoformat())
-	
 	return new_page
 
 
@@ -85,13 +97,13 @@ def create_vendor_list_html(data):
 
 
 def main():
-
 	fair_data_filename = os.path.join(".", "data", "nc_state_fair_vendor_data.csv")
 	html_template_filename = os.path.join(".", "template", "template.html")
 	print("Data file: " + fair_data_filename)
 	print("HTML template file: " + html_template_filename)
 
 	fair_data = read_csv_file(fair_data_filename)
+	print("Total fair data rows: " + str(len(fair_data)))
 	html_template = read_template(html_template_filename)
 	page_html = create_page(html_template, fair_data)
 
@@ -99,7 +111,15 @@ def main():
 	with open(results_filename, "w") as page_file:
 		page_file.write(page_html)
 
-
+	print()
+	print("Count by FOODTYPE:")
+	foodtypes = get_sorted_unique_column_values_and_counts(fair_data, "FOODTYPE")
+	count = 0
+	for key in sorted(foodtypes.keys()):
+		count = count + foodtypes[key]
+		print("\t" + key + ": " + str(foodtypes[key]))
+	print("\t______")
+	print("\tTotal: " + str(count))
 
 if __name__ == '__main__':
 	main()		
