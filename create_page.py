@@ -66,7 +66,7 @@ def create_id_from_text(text):
 
 def create_vendor_list_html(data):
 	list_template = """<li>
-							<h2 class='vendor'>-CONTRACT-</h2>
+							<h2 id='-id-' class='vendor'>-CONTRACT-</h2>
 							<p class='foodtype'>-FOODTYPE-</p>
 							<p class='product'>-PRODUCT-</p>
 						</li>
@@ -79,6 +79,7 @@ def create_vendor_list_html(data):
 			if field in row:
 				field_value = str(row[field])
 			new_item = new_item.replace("-" + field + "-", field_value)
+		new_item = new_item.replace("-id-", create_id_from_text(str(row["FOODTYPE"])))
 		list_html = list_html + new_item
 	return list_html
 
