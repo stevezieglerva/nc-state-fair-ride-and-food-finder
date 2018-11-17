@@ -1,4 +1,5 @@
 import unittest
+import os
 from create_page import *
 
 
@@ -7,7 +8,8 @@ class TestMethods(unittest.TestCase):
 		# Arrange
 
 		# Act
-		result = read_csv_file("..\\data\\nc_state_fair_vendor_data.csv")
+		data_filename = os.path.join("..", "data", "nc_state_fair_vendor_data.csv")
+		result = read_csv_file(data_filename)
 
 		# Assert
 		self.assertGreater(len(result), 1)
@@ -17,7 +19,8 @@ class TestMethods(unittest.TestCase):
 		# Arrange
 
 		# Act
-		result = read_template("..\\template\\template.html")
+		template_filename = os.path.join("..", "template", "template.html")
+		result = read_template(template_filename)
 
 		# Assert
 		self.assertTrue("<html>" in result)
@@ -25,8 +28,10 @@ class TestMethods(unittest.TestCase):
 
 	def test_create_page__valid_template_and_data__valid_populated_html(self):
 		# Arrange
-		template = read_template("..\\template\\template.html")
-		data = read_csv_file("results_sample.csv")
+		template_filename = os.path.join("..", "template", "template.html")
+		template = read_template(template_filename)
+		data_filename = os.path.join("..", "data", "nc_state_fair_vendor_data.csv")
+		data = read_csv_file(data_filename)
 		print("test_create_page__valid_template_and_data__valid_populated_html")
 
 		# Act

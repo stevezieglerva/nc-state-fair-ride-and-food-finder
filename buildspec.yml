@@ -4,6 +4,11 @@ phases:
 
   build:
     commands:
+      - echo "******** Running tests ********"
+      - cd tests
+      - python unit_tests.py
+      - cd ..
+
       - echo "******** Building site ********"
       - ls -la 
       - python create_page.py
