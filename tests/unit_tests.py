@@ -28,7 +28,6 @@ class TestMethods(unittest.TestCase):
 		# Assert
 		self.assertTrue("<html>" in result)
 
-
 	def test_create_page__valid_template_and_data__valid_populated_html(self):
 		# Arrange
 		template_filename = os.path.join("..", "template", "template.html")
@@ -43,9 +42,6 @@ class TestMethods(unittest.TestCase):
 		# Assert
 		self.assertTrue("<html>" in result)
 		self.assertTrue("Davis Concessions" in result)
-
-		print(result)
-
 
 	def test_get_sorted_unique_column_values__valid_column_name__returns_values(self):
 		# Arrange
