@@ -77,7 +77,7 @@ def main():
 	html_template = read_template(".\\template\\template.html")
 	page_html = create_page(html_template, fair_data)
 
-	with open("results.html", "w") as page_file:
+	with open("index.html", "w") as page_file:
 		page_file.write(page_html)
 
 

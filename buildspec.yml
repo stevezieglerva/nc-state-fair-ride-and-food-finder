@@ -4,7 +4,12 @@ phases:
 
   build:
     commands:
-      - echo "******** Building Staging Jekyll site with drafts ********"
+      - echo "******** Building site ********"
+      - python create-page.py
+      - mkdir site
+      - cp index.html site/
+      - aws s3 sync site/ s3://nc-state-fair-food-finder    
+
 
       - echo "******** Logging Build Event ********"
       - pwd
