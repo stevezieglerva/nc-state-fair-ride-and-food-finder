@@ -2,6 +2,7 @@
 import csv
 import os
 import datetime
+import re
 
 
 def read_csv_file(filename):
@@ -49,13 +50,19 @@ def create_page(template, data):
 
 def create_filter_button_list(data):
 	foodtypes = get_sorted_unique_column_values(data, "FOODTYPE")
-	button_template = "<a href='#' class='filter-button'>-foodtype-</a>\n"
+	button_template = "<a id='-id-' href='#' class='filter-button'>-foodtype-</a>\n"
 	button_list = ""
 	for foodtype in foodtypes:
 		new_button = button_template.replace("-foodtype-", foodtype)
+		new_button = new_button.replace("-id-", create_id_from_text(foodtype))
 		button_list = button_list + new_button
 	return button_list
 
+
+def create_id_from_text(text):
+	id = text.lower()
+	id = re.sub(r"[^a-zA-Z0-9]", "", id)
+	return id
 
 def create_vendor_list_html(data):
 	list_template = """<li>

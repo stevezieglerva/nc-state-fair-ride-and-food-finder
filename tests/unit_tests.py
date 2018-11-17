@@ -56,7 +56,24 @@ class TestMethods(unittest.TestCase):
 		# Assert
 		self.assertEqual(result, ['Confections', 'Fair Food', 'Ice Cream'] )
 
-		
+	def test_create_id_from_text__nothing_to_replace__text_returned(self):
+		# Arrange
+
+		# Act
+		result = create_id_from_text("abc")
+
+		# Assert
+		self.assertEqual(result, "abc")
+
+	def test_create_id_from_text__special_chars_to_replace__id_returned(self):
+		# Arrange
+
+		# Act
+		result = create_id_from_text("aBc -_!@#$%^&*")
+
+		# Assert
+		self.assertEqual(result, "abc")
+
 
 if __name__ == '__main__':
 	unittest.main()		
