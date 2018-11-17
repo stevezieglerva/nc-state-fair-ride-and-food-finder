@@ -1,5 +1,6 @@
 
 import csv
+import os
 
 
 def read_csv_file(filename):
@@ -73,8 +74,14 @@ def create_vendor_list_html(data):
 
 
 def main():
-	fair_data = read_csv_file(".\\data\\nc_state_fair_vendor_data.csv")
-	html_template = read_template(".\\template\\template.html")
+
+	fair_data_filename = os.path.join(".", "data", "nc_state_fair_vendor_data.csv")
+	html_template_filename = os.path.join(".", "template", "template.html")
+	print("Data file: " + fair_data_filename)
+	print("HTML template file: " + html_template_filename)
+
+	fair_data = read_csv_file(fair_data_filename)
+	html_template = read_template(html_template_filename)
 	page_html = create_page(html_template, fair_data)
 
 	with open("index.html", "w") as page_file:
