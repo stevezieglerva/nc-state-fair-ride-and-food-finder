@@ -1,6 +1,7 @@
 
 import csv
 import os
+import datetime
 
 
 def read_csv_file(filename):
@@ -41,6 +42,8 @@ def create_page(template, data):
 	list_html = create_vendor_list_html(data)
 	new_page = template.replace("<filter-buttons-here/>", filter_button_list_html)
 	new_page = new_page.replace("<list-here/>", list_html)
+	new_page = new_page.replace("<date-generated/>", datetime.datetime.now().isoformat())
+	
 	return new_page
 
 

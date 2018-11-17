@@ -50,6 +50,8 @@ class TestMethods(unittest.TestCase):
 		# Assert
 		self.assertEqual(result, ['Confections', 'Fair Food', 'Ice Cream'] )
 
+		
+
 if __name__ == '__main__':
 	unittest.main()		
 
