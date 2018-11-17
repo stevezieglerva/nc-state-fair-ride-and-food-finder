@@ -84,7 +84,8 @@ def main():
 	html_template = read_template(html_template_filename)
 	page_html = create_page(html_template, fair_data)
 
-	with open("index.html", "w") as page_file:
+	results_filename = os.path.join(".", "site_results", "index.html")
+	with open(results_filename, "w") as page_file:
 		page_file.write(page_html)
 
 

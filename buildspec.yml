@@ -7,9 +7,7 @@ phases:
       - echo "******** Building site ********"
       - ls -la 
       - python create_page.py
-      - mkdir site
-      - cp index.html site/
-      - aws s3 sync site/ s3://nc-state-fair-food-finder   
+      - aws s3 sync site_results/ s3://nc-state-fair-food-finder   
       - ls -la 
 
 
