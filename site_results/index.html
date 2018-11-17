@@ -7,21 +7,33 @@
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="apple-touch-icon" href="/favicon.ico"/>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 	</head>
 	<body>
 		<script src="list.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<div class="container-fluid">
 
-		<h1>Here are the food vendors.</h1>
+		<div class="row">
+			<div class="col-sm-12" style="background-color:lavender;">.col-sm-4
+					<h1>Here are the food vendors.</h1>
+			</div>
+		</div>
 
+		<div class="row">
+			<div class="col-sm-12" style="background-color:lavender;">
+				<div id="vendors">
+					<!-- class="search" automagically makes an input a search field. -->
+					<input class="search" placeholder="Search" /><br/>
+					<!-- class="sort" automagically makes an element a sort buttons. The date-sort value decides what to sort by. -->
 
-		<div id="vendors">
-			<!-- class="search" automagically makes an input a search field. -->
-			<input class="search" placeholder="Search" /><br/>
-			<!-- class="sort" automagically makes an element a sort buttons. The date-sort value decides what to sort by. -->
-
-			<button class="filter-button-all">All</button>
-			<a href='#' class='filter-button'>Asian</a>
+					<button class="filter-button-all">All</button>
+					<a href='#' class='filter-button'>Asian</a>
 <a href='#' class='filter-button'>Burgers</a>
 <a href='#' class='filter-button'>Coffee</a>
 <a href='#' class='filter-button'>Confection</a>
@@ -39,8 +51,8 @@
 <a href='#' class='filter-button'>Veggies</a>
 
 
-			<ul class="list">
-				<li>
+					<ul class="list">
+						<li>
 							<h2 class='vendor'>Davis Concessions</h2>
 							<p class='foodtype'>Confection</p>
 							<p class='product'>Cotton Candy, Candy Apples, Caramel Corn & Confections</p>
@@ -266,41 +278,42 @@
 							<p class='product'>Cotton Candy, Candy Apples, Caramel Apples, Popcorn, Soda & Water</p>
 						</li>
 						
-			</ul>
-		</div>
-		<script>
-			var options = {
-				valueNames: [ 'vendor', 'foodtype', 'product' ]
-			};
-			
-			var vendorList = new List('vendors', options);
+					</ul>
+				</div>
+			</div>
+			<script>
+				var options = {
+					valueNames: [ 'vendor', 'foodtype', 'product' ]
+				};
+				
+				var vendorList = new List('vendors', options);
 
-			$('.filter-button').on('click',function(){
-				var $text = $(this).text();
-				if($(this).hasClass( 'selected' )){
-					vendorList.filter();
-					$(this).removeClass('selected');
-				} else {
-					vendorList.filter(function(item) {
-					return (item.values().foodtype == $text);
+				$('.filter-button').on('click',function(){
+					var $text = $(this).text();
+					if($(this).hasClass( 'selected' )){
+						vendorList.filter();
+						$(this).removeClass('selected');
+					} else {
+						vendorList.filter(function(item) {
+						return (item.values().foodtype == $text);
+						});
+						$(this).addClass('selected');
+					}
 					});
-					$(this).addClass('selected');
-				}
-				});
 
-			$('.filter-button-all').on('click',function(){
-					vendorList.filter();
-				});				
-		</script>
-		<br/>
-		<hr/>
-		<p>
-		Generated: 2018-11-17T10:46:37.977002 (UTC)
-		</p>
-		<p>
-		Contribute: <a href="https://github.com/stevezieglerva/nc-state-fair-ride-and-food-finder">website</a> or <a href="https://github.com/stevezieglerva/nc-state-fair-vendor-esri-converter">data</a>
-		</p>
-		
-		</body>
+				$('.filter-button-all').on('click',function(){
+						vendorList.filter();
+					});				
+			</script>
+			<br/>
+			<hr/>
+			<p>
+			Generated: 2018-11-17T13:19:09.471002 (UTC)
+			</p>
+			<p>
+			Contribute: <a href="https://github.com/stevezieglerva/nc-state-fair-ride-and-food-finder">website</a> or <a href="https://github.com/stevezieglerva/nc-state-fair-vendor-esri-converter">data</a>
+			</p>
+			</div>	
+		</div>
 	</body>
 </html>

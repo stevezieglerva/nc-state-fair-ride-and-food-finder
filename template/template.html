@@ -7,59 +7,72 @@
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="apple-touch-icon" href="/favicon.ico"/>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 	</head>
 	<body>
 		<script src="list.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<div class="container-fluid">
 
-		<h1>Here are the food vendors.</h1>
-
-
-		<div id="vendors">
-			<!-- class="search" automagically makes an input a search field. -->
-			<input class="search" placeholder="Search" /><br/>
-			<!-- class="sort" automagically makes an element a sort buttons. The date-sort value decides what to sort by. -->
-
-			<button class="filter-button-all">All</button>
-			<filter-buttons-here/>
-
-			<ul class="list">
-				<list-here/>
-			</ul>
+		<div class="row">
+			<div class="col-sm-12" style="background-color:lavender;">.col-sm-4
+					<h1>Here are the food vendors.</h1>
+			</div>
 		</div>
-		<script>
-			var options = {
-				valueNames: [ 'vendor', 'foodtype', 'product' ]
-			};
-			
-			var vendorList = new List('vendors', options);
 
-			$('.filter-button').on('click',function(){
-				var $text = $(this).text();
-				if($(this).hasClass( 'selected' )){
-					vendorList.filter();
-					$(this).removeClass('selected');
-				} else {
-					vendorList.filter(function(item) {
-					return (item.values().foodtype == $text);
+		<div class="row">
+			<div class="col-sm-12" style="background-color:lavender;">
+				<div id="vendors">
+					<!-- class="search" automagically makes an input a search field. -->
+					<input class="search" placeholder="Search" /><br/>
+					<!-- class="sort" automagically makes an element a sort buttons. The date-sort value decides what to sort by. -->
+
+					<button class="filter-button-all">All</button>
+					<filter-buttons-here/>
+
+					<ul class="list">
+						<list-here/>
+					</ul>
+				</div>
+			</div>
+			<script>
+				var options = {
+					valueNames: [ 'vendor', 'foodtype', 'product' ]
+				};
+				
+				var vendorList = new List('vendors', options);
+
+				$('.filter-button').on('click',function(){
+					var $text = $(this).text();
+					if($(this).hasClass( 'selected' )){
+						vendorList.filter();
+						$(this).removeClass('selected');
+					} else {
+						vendorList.filter(function(item) {
+						return (item.values().foodtype == $text);
+						});
+						$(this).addClass('selected');
+					}
 					});
-					$(this).addClass('selected');
-				}
-				});
 
-			$('.filter-button-all').on('click',function(){
-					vendorList.filter();
-				});				
-		</script>
-		<br/>
-		<hr/>
-		<p>
-		Generated: <date-generated/> (UTC)
-		</p>
-		<p>
-		Contribute: <a href="https://github.com/stevezieglerva/nc-state-fair-ride-and-food-finder">website</a> or <a href="https://github.com/stevezieglerva/nc-state-fair-vendor-esri-converter">data</a>
-		</p>
-		
-		</body>
+				$('.filter-button-all').on('click',function(){
+						vendorList.filter();
+					});				
+			</script>
+			<br/>
+			<hr/>
+			<p>
+			Generated: <date-generated/> (UTC)
+			</p>
+			<p>
+			Contribute: <a href="https://github.com/stevezieglerva/nc-state-fair-ride-and-food-finder">website</a> or <a href="https://github.com/stevezieglerva/nc-state-fair-vendor-esri-converter">data</a>
+			</p>
+			</div>	
+		</div>
 	</body>
 </html>
