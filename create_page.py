@@ -79,7 +79,7 @@ def create_vendor_list_html(data):
 			if field in row:
 				field_value = str(row[field])
 			new_item = new_item.replace("-" + field + "-", field_value)
-		new_item = new_item.replace("-id-", create_id_from_text(str(row["FOODTYPE"])))
+		new_item = new_item.replace("-id-", create_id_from_text(str(row["CONTRACT"])))
 		list_html = list_html + new_item
 	return list_html
 
