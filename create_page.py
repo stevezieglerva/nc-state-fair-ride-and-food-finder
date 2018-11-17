@@ -54,7 +54,7 @@ def create_filter_button_list(data):
 	button_list = ""
 	for foodtype in foodtypes:
 		new_button = button_template.replace("-foodtype-", foodtype)
-		new_button = new_button.replace("-id-", create_id_from_text(foodtype))
+		new_button = new_button.replace("-id-", "filter-" + create_id_from_text(foodtype))
 		button_list = button_list + new_button
 	return button_list
 
