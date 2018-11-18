@@ -1,0 +1,32 @@
+version: 0.2
+   
+phases:
+
+  build:
+    commands:
+
+
+      - echo "******** Deploying site ********"
+      - aws s3 sync s3://nc-state-fair-food-finder-test  s3://nc-state-fair-food-finder 
+
+
+
+      - echo "******** Logging Build Event ********"
+      - pwd
+      - mkdir log
+      - cd log
+      - mkdir general_events
+      - ls -la
+      - cd general_events
+      - ls -la
+      - pwd
+      - cd ..
+      - cd ..
+      - pwd
+      - cp build_event_json.txt log/general_events/
+      - aws s3 sync log/ s3://aws-s3-to-es     
+
+
+
+
+

@@ -1,0 +1,24 @@
+version: 0.2
+   
+phases:
+
+  build:
+    commands:
+      - echo "******** Running tests ********"
+      - cd tests
+      - python unit_tests.py
+      - cd ..
+
+      - echo "******** Building site ********"
+      - ls -la 
+      - python create_page.py
+      - aws s3 sync site_results/ s3://nc-state-fair-food-finder-test   
+      - ls -la 
+
+
+
+
+
+
+
+
