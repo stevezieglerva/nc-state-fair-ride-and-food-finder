@@ -52,17 +52,18 @@ def read_template(filename):
 
 
 def create_page(template, data):
-	filter_button_list_html = create_filter_button_list(data)
+	responsive_filter_button_list_html = create_responsive_filter_button_list(data)
 	list_html = create_vendor_list_html(data)
-	new_page = template.replace("<filter-buttons-here/>", filter_button_list_html)
+	new_page = template
+	new_page = new_page.replace("<responsive-filter-buttons-here/>", responsive_filter_button_list_html)
 	new_page = new_page.replace("<list-here/>", list_html)
 	new_page = new_page.replace("<date-generated/>", datetime.datetime.now().isoformat())
 	return new_page
 
 
-def create_filter_button_list(data):
+def create_responsive_filter_button_list(data):
 	foodtypes = get_sorted_unique_column_values(data, "FOODTYPE")
-	button_template = "<a id='-id-' href='#' class='filter-button'>-foodtype-</a>\n"
+	button_template = "<a id='-id-' href='#' class='list-group-item filter-button'>-foodtype-</a>\n"
 	button_list = ""
 	for foodtype in foodtypes:
 		new_button = button_template.replace("-foodtype-", foodtype)
@@ -75,6 +76,7 @@ def create_id_from_text(text):
 	id = text.lower()
 	id = re.sub(r"[^a-zA-Z0-9]", "", id)
 	return id
+
 
 def create_vendor_list_html(data):
 	list_template = """<li>
@@ -94,6 +96,9 @@ def create_vendor_list_html(data):
 		new_item = new_item.replace("-id-", create_id_from_text(str(row["CONTRACT"])))
 		list_html = list_html + new_item
 	return list_html
+
+
+
 
 
 def main():

@@ -3,6 +3,22 @@
 		<title>NC State Fair Finder</title>
 		<style>
 			.filter-button {color: white; font-weight: bold; background-color: blue; margin: 5px; padding: 5px; text-decoration: none}
+			.list-group-horizontal .list-group-item {
+				display: inline-block;
+			}
+			.list-group-horizontal .list-group-item {
+				margin-bottom: 0;
+				margin-left:-4px;
+				margin-right: 0;
+			}
+			.list-group-horizontal .list-group-item:first-child {
+				border-top-right-radius:0;
+				border-bottom-left-radius:4px;
+			}
+			.list-group-horizontal .list-group-item:last-child {
+				border-top-right-radius:4px;
+				border-bottom-left-radius:0;
+			}
 		</style>
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -19,27 +35,29 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<div class="container-fluid">
 
-		<div class="row">
-			<div class="col-sm-12" >
-					<h1>Here are the food vendors.</h1>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-sm-12" >
-				<div id="vendors">
-					<!-- class="search" automagically makes an input a search field. -->
-					<input class="search" placeholder="Search" /><br/>
-					<!-- class="sort" automagically makes an element a sort buttons. The date-sort value decides what to sort by. -->
-
-					<button id="filter-all" class="filter-button-all">All</button>
-					<filter-buttons-here/>
-
-					<ul class="list">
-						<list-here/>
-					</ul>
+			<div class="row">
+				<div class="col-sm-12" >
+						<h1>Here are the food vendors.</h1>
 				</div>
 			</div>
+			<div class="row" style="padding-top:50px">
+				<div class="col-xs-12 col-sm-8 col-md-6 text-center">
+					<div class="list-group list-group-horizontal">
+						<a id='filter-all' href='#' class='list-group-item active filter-button-all'>All</a>
+						<responsive-filter-buttons-here/>
+					</div>
+				</div>
+			</div>	
+			<div class="row">
+				<div class="col-xs-12 col-sm-8 col-md-6" >
+					<div id="vendors">
+						<input class="search" placeholder="Search" /><br/>
+						<ul class="list">
+							<list-here/>
+						</ul>
+					</div>
+				</div>
+			</div>			
 			<script>
 				var options = {
 					valueNames: [ 'vendor', 'foodtype', 'product' ]
@@ -48,31 +66,35 @@
 				var vendorList = new List('vendors', options);
 
 				$('.filter-button').on('click',function(){
+					$('.filter-button').removeClass('active');
+					$('.filter-button-all').removeClass('active');
 					var $text = $(this).text();
-					if($(this).hasClass( 'selected' )){
+					if($(this).hasClass( 'selected active' )){
 						vendorList.filter();
-						$(this).removeClass('selected');
+						$(this).removeClass('selected active');
 					} else {
 						vendorList.filter(function(item) {
 						return (item.values().foodtype == $text);
 						});
-						$(this).addClass('selected');
+						$(this).addClass('selected active');
 					}
 					});
 
 				$('.filter-button-all').on('click',function(){
 						vendorList.filter();
+						$('.filter-button').removeClass('active');
+						$(this).addClass('active');
 					});				
 			</script>
-		</div>	
-		<br/>
-		<hr/>
-		<p>
-		Generated: <date-generated/> (UTC)
-		</p>
-		<p>
-		Contribute: <a href="https://github.com/stevezieglerva/nc-state-fair-ride-and-food-finder">website</a> or <a href="https://github.com/stevezieglerva/nc-state-fair-vendor-esri-converter">data</a>
-		</p>
+	
+			<br/>
+			<hr/>
+			<p>
+			Generated: <date-generated/> (UTC)
+			</p>
+			<p>
+			Contribute: <a href="https://github.com/stevezieglerva/nc-state-fair-ride-and-food-finder">website</a> or <a href="https://github.com/stevezieglerva/nc-state-fair-vendor-esri-converter">data</a>
+			</p>
 			
 		</div>
 	</body>
