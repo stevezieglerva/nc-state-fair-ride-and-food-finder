@@ -83,12 +83,13 @@ def create_vendor_list_html(data):
 							<h2 id='-id-' class='vendor'>-CONTRACT-</h2>
 							<p class='foodtype'>-FOODTYPE-</p>
 							<p class='product'>-PRODUCT-</p>
+							<p class='location'><a href='https://www.google.com/maps/dir/?api=1&destination=-y-,-x-'>Walk</a></p>
 						</li>
 						"""
 	list_html = ""
 	for row in data:
 		new_item = list_template
-		for field in ["CONTRACT", "FOODTYPE", "PRODUCT"]:
+		for field in ["CONTRACT", "FOODTYPE", "PRODUCT", "y", "x"]:
 			field_value = ""
 			if field in row:
 				field_value = str(row[field])
